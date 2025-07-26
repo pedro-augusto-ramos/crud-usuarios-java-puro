@@ -21,10 +21,8 @@ public class UsuarioController {
     public void criarUsuario (Usuario usuario){
         try {
             service.salvarUsuario(usuario);
-            System.out.println("201 - Created");
         } catch (UserNotSavedException e) {
             System.out.println(e.getMessage());
-            System.out.println("400 - Bad Request");
         }
     }
 
@@ -33,10 +31,8 @@ public class UsuarioController {
         List<Usuario> listarUsuarios = Collections.emptyList();
         try {
             listarUsuarios = service.buscarTodos();
-            System.out.println("200 - OK");
         } catch (NoUsersFoundException e){
             System.out.println(e.getMessage());
-            System.out.println("404 - Not Found");
         }
         return listarUsuarios;
     }
@@ -46,10 +42,8 @@ public class UsuarioController {
         Usuario usuario = new Usuario();
         try {
             usuario = service.buscarPorId(id);
-            System.out.println("200 - OK");
         } catch (UserNotFoundException e){
             System.out.println(e.getMessage());
-            System.out.println("404 - Not Found");
         }
         return usuario;
     }
@@ -58,10 +52,8 @@ public class UsuarioController {
     public void atualizarUsuarioPorId (Long id, Usuario usuario){
         try {
             service.atualizarPorId(id, usuario);
-            System.out.println("204 - No Content");
         } catch (UserNotFoundException e){
             System.out.println(e.getMessage());
-            System.out.println("404 - Not Found");
         }
     }
 
@@ -69,9 +61,8 @@ public class UsuarioController {
     public void deletarUsuarioPorId (Long id) {
         try {
             service.deletarPorId(id);
-            System.out.println("200 - OK");
         } catch (UserNotFoundException e){
-            System.out.println("404 - Not Found");
+            System.out.println(e.getMessage());
         }
     }
 
