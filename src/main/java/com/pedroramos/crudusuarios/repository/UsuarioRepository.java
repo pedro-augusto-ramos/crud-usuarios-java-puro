@@ -13,6 +13,7 @@ public class UsuarioRepository {
 
     public void save (Usuario usuario){
         usuario.setId(id++);
+        usuarios.add(usuario);
     }
 
     public List<Usuario> findAll (){
@@ -21,7 +22,7 @@ public class UsuarioRepository {
 
     public Usuario findById (Long id){
         for(Usuario usuario : usuarios){
-            if (existsById(id)){
+            if (Objects.equals(usuario.getId(), id)){
                 return usuario;
             }
         }
@@ -29,11 +30,7 @@ public class UsuarioRepository {
     }
 
     public void deleteById (Long id){
-        for(Usuario usuario : usuarios){
-            if(existsById(id)){
-                usuarios.remove(usuario);
-            }
-        }
+        usuarios.removeIf(usuario -> existsById(id));
     }
 
     public boolean existsById (Long id){
