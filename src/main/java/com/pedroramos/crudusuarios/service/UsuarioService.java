@@ -17,7 +17,7 @@ public class UsuarioService {
     }
 
     public void salvarUsuario (Usuario usuario){
-        if(usuario.getIdade() != null || usuario.getEmail() != null || usuario.getNome() != null ){
+        if(usuario.getIdade() != null && usuario.getEmail() != null && usuario.getNome() != null ){
             repository.save(usuario);
         } else {
             throw new UserNotSavedException("Não foi possível salvar o usuário, houve um erro em seus atributos.");
@@ -44,7 +44,6 @@ public class UsuarioService {
             usuarioAntigo.setNome(usuario.getNome());
             usuarioAntigo.setEmail(usuario.getEmail());
             usuarioAntigo.setIdade(usuario.getIdade());
-            repository.save(usuarioAntigo);
         } else {
             throw new UserNotFoundException("Usuario com id" + id + "não foi encontrado");
         }
