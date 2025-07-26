@@ -30,7 +30,7 @@ public class UsuarioRepository {
     }
 
     public void deleteById (Long id){
-        usuarios.removeIf(usuario -> existsById(id));
+        usuarios.removeIf(usuario -> id.equals(usuario.getId()));
     }
 
     public boolean existsById (Long id){
